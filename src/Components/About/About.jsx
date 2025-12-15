@@ -16,6 +16,7 @@ const About = () => {
     <section
       id="about"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      data-aos="fade-up"
     >
       {/* Enhanced Background with Icons */}
       <div className="absolute inset-0 z-0">

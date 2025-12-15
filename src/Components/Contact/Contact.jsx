@@ -66,6 +66,7 @@ const Contact = () => {
     <section
       id="contact"
       className="relative min-h-screen py-16 md:py-24 overflow-hidden flex items-center"
+      data-aos="fade-up"
     >
       {/* Enhanced Background with Icons */}
       <div className="absolute inset-0 z-0">

@@ -16,7 +16,11 @@ const Products = () => {
   const previewProducts = allProducts.slice(0, 3);
 
   return (
-    <section id="products" className="relative py-10 overflow-hidden">
+    <section
+      id="products"
+      className="relative py-10 overflow-hidden"
+      data-aos="fade-up"
+    >
       {/* Background with Glass Effects */}
       <div className="absolute inset-0 z-0">
         {/* Animated gradient orbs */}

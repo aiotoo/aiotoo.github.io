@@ -33,6 +33,7 @@ const ProductUs = () => {
     <section
       id="product-us"
       className="relative min-h-screen overflow-hidden mt-20"
+      data-aos="fade-up"
     >
       {/* Enhanced Background */}
       <div className="absolute inset-0 z-0">

@@ -105,7 +105,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative overflow-hidden pt-16 pb-8">
+    <footer className="relative overflow-hidden pt-16 pb-8" data-aos="fade-up">
       {/* Background with gradient */}
       <div
         className="absolute inset-0 z-0"

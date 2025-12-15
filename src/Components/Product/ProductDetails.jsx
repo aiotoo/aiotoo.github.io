@@ -154,7 +154,10 @@ const ProductDetails = () => {
           </nav>
 
           {/* Main Product Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          <div
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12"
+            data-aos="fade-up"
+          >
             {/* Product Image Carousel */}
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <div className="relative group">

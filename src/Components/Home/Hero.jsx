@@ -14,7 +14,10 @@ import { colors, gradients } from "../../constants/colors";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      data-aos="fade-up"
+    >
       {/* Animated Background Elements - Full Width */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/4 -left-20 w-125 h-125 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
@@ -35,10 +38,18 @@ const Hero = () => {
       </div>
 
       {/* Main Content - Full Width */}
-      <div className="relative z-10 w-full px-4 sm:px-8 lg:px-16 xl:px-24">
+      <div
+        className="relative z-10 w-full px-4 sm:px-8 lg:px-16 xl:px-24"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center">
           {/* Left Content - IoT Focused */}
-          <div className="space-y-8 lg:space-y-10">
+          <div
+            className="space-y-8 lg:space-y-10"
+            data-aos="fade-right"
+            data-aos-delay="400"
+          >
             {/* Main Heading - Full Width Typography */}
             <div className="space-y-6">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1]">
@@ -153,7 +164,11 @@ const Hero = () => {
           </div>
 
           {/* Right Content - Hero Image - Full Screen */}
-          <div className="relative lg:pl-8 xl:pl-16">
+          <div
+            className="relative lg:pl-8 xl:pl-16"
+            data-aos="fade-left"
+            data-aos-delay="600"
+          >
             {/* Floating Elements - Full Width */}
             <div className="absolute -top-8 -right-8 z-20">
               <div
