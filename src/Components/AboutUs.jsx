@@ -216,7 +216,7 @@ const AboutUs = () => {
   return (
     <section
       id="about-us"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden mt-20"
     >
       {/* Enhanced Background with Icons and Glass Effects */}
       <div className="absolute inset-0 z-0">

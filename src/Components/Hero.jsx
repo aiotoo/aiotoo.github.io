@@ -8,7 +8,6 @@ import {
   Zap,
   MapPin,
   Shield,
-  Activity,
 } from "lucide-react";
 import HeroImg from "../assets/cpHero.png";
 import { colors, gradients } from "../constants/colors";

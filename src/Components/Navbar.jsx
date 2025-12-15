@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Home, Info, Package, Cpu, Mail } from "lucide-react";
+import { Menu, X, Home, UserRound, Package, Cpu, Mail } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ClodPiLogo from "../assets/ClodPi_Logo.png";
-import { colors, gradients } from "../constants/colors";
+import { gradients } from "../constants/colors";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +20,7 @@ const Navbar = () => {
     {
       name: "About",
       href: "/about-us",
-      icon: Info,
+      icon: UserRound,
     },
     {
       name: "Products",

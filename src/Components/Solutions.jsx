@@ -1,22 +1,14 @@
 import React from "react";
 import {
-  Server,
   Cloud,
   Shield,
-  Zap,
-  Globe,
-  Database,
   Cpu,
   RadioTower,
   ArrowRight,
-  Lock,
-  BarChart,
   Terminal,
   Users,
   Sparkles,
-  Award,
   Layers,
-  Smartphone,
   Wifi,
   Network,
   GitBranch,
@@ -143,7 +135,7 @@ const Solutions = () => {
   return (
     <section
       id="solutions"
-      className="relative min-h-screen py-16 md:py-24 overflow-hidden"
+      className="relative min-h-screen overflow-hidden mt-20"
     >
       {/* Enhanced Background */}
       <div className="absolute inset-0 z-0">

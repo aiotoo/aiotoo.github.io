@@ -8,12 +8,7 @@ import {
   Users,
   Briefcase,
   Mail,
-  Clock,
   ArrowRight,
-  Sparkles,
-  Award,
-  Shield,
-  Zap,
 } from "lucide-react";
 import Container from "./Container";
 import { colors, gradients } from "../constants/colors";

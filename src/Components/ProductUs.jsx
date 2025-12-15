@@ -1,4 +1,3 @@
-// Components/ProductUs.jsx
 import React, { useState } from "react";
 import {
   ArrowRight,
