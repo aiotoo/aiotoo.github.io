@@ -154,53 +154,6 @@ const Hero = () => {
 
           {/* Right Content - Hero Image - Full Screen */}
           <div className="relative lg:pl-8 xl:pl-16">
-            {/* Floating Elements - Full Width */}
-            <div className="absolute -top-8 -right-8 z-20">
-              <div
-                className="p-5 rounded-2xl backdrop-blur-lg border border-white/30 shadow-2xl animate-float"
-                style={{
-                  background: "rgba(255, 255, 255, 0.2)",
-                  animationDelay: "1s",
-                }}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Zap className="w-7 h-7 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-lg text-gray-900">
-                      Ultra Low Power
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      10+ Years Battery
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="absolute bottom-20 -left-8 z-20">
-              <div
-                className="p-5 rounded-2xl backdrop-blur-lg border border-white/30 shadow-2xl animate-float"
-                style={{
-                  background: "rgba(255, 255, 255, 0.2)",
-                  animationDelay: "2s",
-                }}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center">
-                    <Shield className="w-7 h-7 text-green-500" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-lg text-gray-900">
-                      End-to-End
-                    </div>
-                    <div className="text-sm text-gray-600">Encrypted</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Main Image Container - Full Width */}
             <div className="relative">
               <div
