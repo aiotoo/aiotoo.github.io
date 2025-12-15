@@ -15,7 +15,7 @@ import {
   ChevronRight,
   Maximize2,
 } from "lucide-react";
-import { ProductCollections } from "../utils/ProductCollections";
+import { ProductCollections } from "../../utils/ProductCollections";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -24,6 +24,11 @@ const ProductDetails = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAutoSliding, setIsAutoSliding] = useState(true);
   const [showFullscreen, setShowFullscreen] = useState(false);
+
+  // Scroll to top when product changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   // Get product from your detailed product data
   const product = ProductCollections[id];
@@ -139,7 +144,7 @@ const ProductDetails = () => {
         <div className="container mx-auto px-4 py-6">
           <nav className="flex items-center text-sm text-gray-600 mb-8">
             <button
-              onClick={() => navigate("/products")}
+              onClick={() => navigate("/productUs")}
               className="hover:text-blue-600 transition"
             >
               Products

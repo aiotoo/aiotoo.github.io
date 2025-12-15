@@ -16,8 +16,8 @@ import {
   Shield,
   ChevronRight,
 } from "lucide-react";
-import Container from "./Container";
-import { colors, gradients } from "../constants/colors";
+import Container from "../../utils/Container";
+import { colors, gradients } from "../../constants/colors";
 import { Link } from "react-router-dom";
 
 const Footer = () => {

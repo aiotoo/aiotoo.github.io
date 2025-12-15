@@ -7,9 +7,9 @@ import {
   Wifi,
   Globe,
 } from "lucide-react";
-import { colors, gradients } from "../constants/colors";
+import { colors, gradients } from "../../constants/colors";
 import { Link } from "react-router-dom";
-import { backgroundIcons } from "../utils/backgroundIcons";
+import { backgroundIcons } from "../../utils/backgroundIcons";
 
 const About = () => {
   return (

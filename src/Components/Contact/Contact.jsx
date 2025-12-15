@@ -10,12 +10,12 @@ import {
   Mail,
   ArrowRight,
 } from "lucide-react";
-import Container from "./Container";
-import { colors, gradients } from "../constants/colors";
+import Container from "../../utils/Container";
+import { colors, gradients } from "../../constants/colors";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import BackgroundIconRenderer from "../utils/BackgroundIconRenderer";
+import BackgroundIconRenderer from "../../utils/BackgroundIconRenderer";
 
 // Fix for Leaflet marker icons
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";

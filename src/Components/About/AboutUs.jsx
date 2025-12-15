@@ -23,9 +23,9 @@ import {
   Layers,
   ArrowRight,
 } from "lucide-react";
-import Container from "./Container";
-import { colors, gradients } from "../constants/colors";
-import BackgroundIconRenderer from "../utils/BackgroundIconRenderer";
+import Container from "../../utils/Container";
+import { colors, gradients } from "../../constants/colors";
+import BackgroundIconRenderer from "../../utils/BackgroundIconRenderer";
 
 const AboutUs = () => {
   // IoT Use Cases with new colors

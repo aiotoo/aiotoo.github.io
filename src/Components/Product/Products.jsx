@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { allProducts } from "../utils/AllProducts";
+import { allProducts } from "../../utils/AllProducts";
 import {
   ArrowRight,
   Award,
@@ -9,7 +9,7 @@ import {
   Layers,
   Eye,
 } from "lucide-react";
-import { colors, gradients } from "../constants/colors";
+import { colors, gradients } from "../../constants/colors";
 
 const Products = () => {
   const navigate = useNavigate();
