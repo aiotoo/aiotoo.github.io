@@ -351,7 +351,7 @@ const Products = () => {
               <div className="flex items-center gap-2">
                 <Zap size={20} style={{ color: colors.primary }} />
                 <span className="font-medium" style={{ color: colors.dark }}>
-                  1 Year Warranty
+                  1+ Year Warranty
                 </span>
               </div>
             </div>
