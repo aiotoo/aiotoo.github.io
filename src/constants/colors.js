@@ -1,44 +1,30 @@
-/**
- * Color Palette Constants
- * Centralized color definitions for the entire application
- */
-
+// constants/colors.js
 export const colors = {
-  primary: "#0f172a",        // Deep Space Blue
-  secondary: "#3b82f6",      // Electric Blue
-  accent: "#06b6d4",         // Cyan
-  light: "#f1f5f9",          // Light Gray
-  dark: "#1e293b",           // Dark Slate
-  success: "#10b981",        // Green
-  warning: "#f59e0b",        // Amber
+  // New color palette with blue theme
+  primary: "#2563EB", // Rich Blue
+  secondary: "#60A5FA", // Sky Blue
+  accent: "#DBEAFE", // Light Blue
+  light: "#EEEEEE", // Off-white
 
-  // Additional utility colors
-  white: "#ffffff",
-  gray: {
-    50: "#f9fafb",
-    100: "#f3f4f6",
-    200: "#e5e7eb",
-    300: "#d1d5db",
-    400: "#9ca3af",
-    500: "#6b7280",
-    600: "#4b5563",
-    700: "#374151",
-    800: "#1f2937",
-    900: "#111827",
-  },
+  // Additional colors for glass effects
+  dark: "#1a1a2e", // Dark for text
+  success: "#10b981", // Emerald for success states
 
-  // Glass effect variants
+  // Glass morphism colors with transparency
   glass: {
-    white: "rgba(255, 255, 255, 0.92)",
-    primary: "rgba(15, 23, 42, 0.05)",
-  },
-
-  // Gradient backgrounds
-  gradients: {
-    primaryToSecondary: `linear-gradient(135deg, #0f172a, #3b82f6)`,
-    secondaryToAccent: `linear-gradient(135deg, #3b82f6, #06b6d4)`,
-    lightToWhite: `linear-gradient(135deg, #f1f5f9, #ffffff)`,
+    white: "rgba(238, 238, 238, 0.85)",
+    primary: "rgba(37, 99, 235, 0.15)",
+    secondary: "rgba(96, 165, 250, 0.15)",
+    dark: "rgba(26, 26, 46, 0.85)",
+    light: "rgba(219, 234, 254, 0.1)",
+    blur: "blur(20px)",
   },
 };
 
-export default colors;
+export const gradients = {
+  primary: "linear-gradient(135deg, #2563EB 0%, #60A5FA 100%)",
+  secondary: "linear-gradient(135deg, #60A5FA 0%, #DBEAFE 100%)",
+  glass:
+    "linear-gradient(135deg, rgba(238, 238, 238, 0.9) 0%, rgba(219, 234, 254, 0.8) 100%)",
+  hero: "linear-gradient(180deg, rgba(238, 238, 238, 0.95) 0%, rgba(219, 234, 254, 0.2) 100%)",
+};

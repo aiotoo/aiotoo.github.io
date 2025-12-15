@@ -1,272 +1,274 @@
 import React from "react";
-import { ArrowRight, Wifi, Shield, Cpu, RadioTower } from "lucide-react";
+import {
+  ArrowRight,
+  Cpu,
+  Wifi,
+  Radio,
+  Globe,
+  Zap,
+  MapPin,
+  Shield,
+  Activity,
+} from "lucide-react";
 import HeroImg from "../assets/cpHero.png";
-import Container from "./Container";
-import { colors } from "../constants/colors";
+import { colors, gradients } from "../constants/colors";
 
 const Hero = () => {
   return (
-    <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
-      {/* Background Elements - Updated with palette colors */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          background: `linear-gradient(180deg, ${colors.light} 0%, rgba(59, 130, 246, 0.05) 50%, ${colors.light} 100%)`,
-        }}
-      ></div>
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        {/* Network Grid Background */}
-        <div className="absolute inset-0 opacity-10">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated Background Elements - Full Width */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-1/4 -left-20 w-125 h-125 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 -right-20 w-150 h-150 bg-cyan-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 w-100 h-100 bg-primary/5 rounded-full blur-3xl animate-pulse delay-1000" />
+
+        {/* Grid Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.15) 1px, transparent 0)`,
-              backgroundSize: "40px 40px",
+              backgroundImage: `linear-gradient(to right, ${colors.primary}20 1px, transparent 1px),
+                             linear-gradient(to bottom, ${colors.primary}20 1px, transparent 1px)`,
+              backgroundSize: "50px 50px",
             }}
-          ></div>
+          />
         </div>
-        {/* Floating Orbs */}
-        <div
-          className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full opacity-20 blur-3xl animate-pulse"
-          style={{
-            background: `linear-gradient(135deg, ${colors.secondary}, ${colors.accent})`,
-          }}
-        ></div>
-        <div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full opacity-10 blur-3xl"
-          style={{
-            backgroundColor: colors.primary,
-          }}
-        ></div>
       </div>
 
-      <Container className="relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="space-y-8 order-2 lg:order-1">
+      {/* Main Content - Full Width */}
+      <div className="relative z-10 w-full px-4 sm:px-8 lg:px-16 xl:px-24">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center">
+          {/* Left Content - IoT Focused */}
+          <div className="space-y-8 lg:space-y-10">
+            {/* Main Heading - Full Width Typography */}
             <div className="space-y-6">
-              <span
-                className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border"
-                style={{
-                  backgroundColor: `${colors.success}20`,
-                  color: colors.success,
-                  borderColor: `${colors.success}30`,
-                }}
-              >
-                <Wifi className="mr-1" size={12} />
-                IoT Connectivity Specialists
-              </span>
-
-              <h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
-                style={{ color: colors.dark }}
-              >
-                Powering India's{" "}
-                <span className="relative">
-                  <span className="relative z-10">IoT Revolution</span>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1]">
+                <span className="block text-gray-800">India's Largest</span>
+                <span className="relative inline-block mt-4">
                   <span
-                    className="absolute -bottom-1 left-0 right-0 h-3 opacity-50 z-0"
-                    style={{
-                      background: `linear-gradient(90deg, ${colors.secondary}30, transparent)`,
-                    }}
-                  ></span>
-                </span>{" "}
-                with{" "}
-                <span
-                  className="relative"
-                  style={{ color: colors.primary }}
-                >
-                  LoRaWAN®
-                  <span
-                    className="absolute -bottom-1 left-0 w-full h-1 rounded-full"
-                    style={{
-                      background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`,
-                    }}
-                  ></span>
+                    className="relative z-10 bg-clip-text text-transparent"
+                    style={{ backgroundImage: gradients.primary }}
+                  >
+                    IoT Network
+                  </span>
+                  <div className="absolute -bottom-3 left-0 w-full h-1.5 bg-linear-to-r from-blue-500/30 to-transparent rounded-full" />
                 </span>
               </h1>
 
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-                We specialize in <strong>Low Power Long Range</strong> sensor
-                data network communication, utilizing cutting-edge technologies
-                like <strong>LoRaWAN®</strong>, Z-Wave, Zigbee, and NB-IoT to
-                enable IoT businesses and products to succeed.
-              </p>
-
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-                Currently expanding{" "}
-                <strong>LoRa® network coverage across India</strong> through
-                indigenously designed hardware, custom software solutions, and
-                nationwide infrastructure deployment.
+              <p className="text-xl sm:text-2xl text-gray-600 max-w-2xl leading-relaxed">
+                Connecting millions of devices with{" "}
+                <span className="font-semibold text-primary relative">
+                  LoRaWAN® technology
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary/30 rounded-full" />
+                </span>{" "}
+                for smarter cities and sustainable industries.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                className="inline-flex items-center justify-center group px-8 py-4 text-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-white"
-                style={{
-                  background: `linear-gradient(135deg, ${colors.primary}, ${colors.dark})`,
-                }}
-              >
-                <Cpu className="mr-3" size={22} />
-                Explore IoT Solutions
-                <ArrowRight
-                  className="ml-3 group-hover:translate-x-2 transition-transform duration-300"
-                  size={20}
-                />
-              </button>
-
-              <button
-                className="inline-flex items-center justify-center group px-8 py-4 text-lg rounded-lg transition-all duration-300"
-                style={{
-                  borderColor: colors.secondary,
-                  borderWidth: "2px",
+            {/* Tech Stack Icons - Full Width Glassmorphism */}
+            <div className="flex flex-wrap gap-4 pt-8">
+              {[
+                {
+                  icon: Radio,
+                  label: "LoRaWAN®",
+                  color: colors.primary,
+                  desc: "Long Range",
+                },
+                {
+                  icon: Wifi,
+                  label: "Wi-Fi 6",
                   color: colors.secondary,
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = colors.secondary;
-                  e.target.style.color = "white";
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = "transparent";
-                  e.target.style.color = colors.secondary;
+                  desc: "High Speed",
+                },
+                {
+                  icon: Globe,
+                  label: "NB-IoT",
+                  color: "#10B981",
+                  desc: "Cellular IoT",
+                },
+                {
+                  icon: Shield,
+                  label: "Secure",
+                  color: "#8B5CF6",
+                  desc: "Encrypted",
+                },
+                {
+                  icon: Zap,
+                  label: "Low Power",
+                  color: "#F59E0B",
+                  desc: "10+ Years",
+                },
+                {
+                  icon: MapPin,
+                  label: "GPS",
+                  color: "#EF4444",
+                  desc: "Tracking",
+                },
+              ].map((tech, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-3 px-5 py-3 rounded-xl backdrop-blur-lg border border-white/30 shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl group flex-1 min-w-40"
+                  style={{
+                    background: "rgba(255, 255, 255, 0.15)",
+                    backdropFilter: "blur(10px)",
+                  }}
+                >
+                  <div
+                    className="p-2.5 rounded-lg group-hover:scale-110 transition-transform"
+                    style={{ backgroundColor: `${tech.color}15` }}
+                  >
+                    <tech.icon
+                      className="w-6 h-6"
+                      style={{ color: tech.color }}
+                    />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">
+                      {tech.label}
+                    </div>
+                    <div className="text-xs text-gray-600">{tech.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Buttons - Full Width */}
+            <div className="pt-10">
+              <button
+                className="group relative px-10 py-5 text-xl font-semibold rounded-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl overflow-hidden flex-1"
+                style={{
+                  background: gradients.primary,
+                  color: "white",
                 }}
               >
-                <Shield className="mr-3" size={22} />
-                View Security
-                <ArrowRight
-                  className="ml-3 group-hover:translate-x-2 transition-transform duration-300"
-                  size={20}
-                />
+                <div className="absolute inset-0 bg-linear-to-r from-white/0 via-white/10 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                <div className="relative flex items-center justify-center gap-4">
+                  <Cpu className="w-7 h-7" />
+                  <span className="text-lg sm:text-xl">
+                    Start Your IoT Journey
+                  </span>
+                  <ArrowRight className="w-6 h-6 transform group-hover:translate-x-2 transition-transform" />
+                </div>
               </button>
             </div>
           </div>
 
-          {/* Right Content - Hero Image with Floating Elements */}
-          <div className="relative order-1 lg:order-2">
-            {/* Main Image Container */}
-            <div className="relative z-20">
-              {/* Image with gradient overlay */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
-                <div
-                  className="absolute inset-0 z-10"
-                  style={{
-                    background: `linear-gradient(135deg, ${colors.primary}20, transparent, ${colors.secondary}10)`,
-                  }}
-                ></div>
+          {/* Right Content - Hero Image - Full Screen */}
+          <div className="relative lg:pl-8 xl:pl-16">
+            {/* Floating Elements - Full Width */}
+            <div className="absolute -top-8 -right-8 z-20">
+              <div
+                className="p-5 rounded-2xl backdrop-blur-lg border border-white/30 shadow-2xl animate-float"
+                style={{
+                  background: "rgba(255, 255, 255, 0.2)",
+                  animationDelay: "1s",
+                }}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <Zap className="w-7 h-7 text-primary" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-lg text-gray-900">
+                      Ultra Low Power
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      10+ Years Battery
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute bottom-20 -left-8 z-20">
+              <div
+                className="p-5 rounded-2xl backdrop-blur-lg border border-white/30 shadow-2xl animate-float"
+                style={{
+                  background: "rgba(255, 255, 255, 0.2)",
+                  animationDelay: "2s",
+                }}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center">
+                    <Shield className="w-7 h-7 text-green-500" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-lg text-gray-900">
+                      End-to-End
+                    </div>
+                    <div className="text-sm text-gray-600">Encrypted</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Main Image Container - Full Width */}
+            <div className="relative">
+              <div
+                className="relative rounded-3xl overflow-hidden backdrop-blur-lg border border-white/30 shadow-2xl"
+                style={{
+                  background: "rgba(255, 255, 255, 0.15)",
+                }}
+              >
+                {/* Animated Glow Effect */}
+                <div className="absolute inset-0 bg-linear-to-r from-transparent via-primary/10 to-transparent -translate-x-full animate-shimmer" />
+
                 <img
                   src={HeroImg}
-                  alt="ClodPi Labs IoT Connectivity Solutions"
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  alt="ClodPi Labs IoT Network Infrastructure"
+                  className="w-full h-auto object-cover transform hover:scale-110 transition-transform duration-1000"
                 />
 
-                {/* Animated network overlay */}
-                <div className="absolute inset-0 z-20 opacity-30">
-                  <div
-                    className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full animate-ping"
-                    style={{
-                      borderColor: colors.secondary,
-                      borderWidth: "2px",
-                    }}
-                  ></div>
-                  <div
-                    className="absolute bottom-1/3 right-1/3 w-24 h-24 rounded-full animate-ping"
-                    style={{
-                      borderColor: colors.accent,
-                      borderWidth: "2px",
-                      animationDelay: "0.5s",
-                    }}
-                  ></div>
-                </div>
+                {/* Overlay Gradient */}
+                <div className="absolute inset-0 bg-linear-to-t from-black/10 via-transparent to-transparent" />
               </div>
 
-              {/* Floating Tech Badges */}
-              <div className="absolute -top-4 -right-4 z-30">
-                <div
-                  className="text-white px-4 py-3 rounded-xl shadow-lg transform rotate-3"
-                  style={{
-                    background: `linear-gradient(135deg, ${colors.secondary}, ${colors.primary})`,
-                  }}
-                >
-                  <div className="flex items-center gap-2">
-                    <RadioTower size={16} />
-                    <span className="font-semibold">LoRaWAN®</span>
+              {/* Live Indicator - Full Width */}
+              <div
+                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 z-30 px-8 py-3 rounded-full backdrop-blur-lg border border-white/30 shadow-2xl"
+                style={{
+                  background: "rgba(255, 255, 255, 0.25)",
+                }}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse delay-150" />
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse delay-300" />
                   </div>
-                  <div className="text-xs opacity-90">Certified Hardware</div>
+                  <span className="text-sm font-bold text-gray-900 tracking-wider">
+                    REAL-TIME DATA STREAMING
+                  </span>
                 </div>
               </div>
-
-              <div className="absolute -bottom-4 -left-4 z-30">
-                <div
-                  className="text-white px-4 py-3 rounded-xl shadow-lg transform -rotate-3"
-                  style={{
-                    background: `linear-gradient(135deg, ${colors.success}, #059669)`,
-                  }}
-                >
-                  <div className="flex items-center gap-2">
-                    <Cpu size={16} />
-                    <span className="font-semibold">Made in India</span>
-                  </div>
-                  <div className="text-xs opacity-90">Indigenous Design</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Background Decorative Elements */}
-            <div
-              className="absolute -top-6 -right-6 w-48 h-48 rounded-full opacity-30 blur-xl animate-pulse"
-              style={{
-                background: `linear-gradient(135deg, ${colors.secondary}20, transparent)`,
-              }}
-            ></div>
-            <div
-              className="absolute -bottom-8 -left-8 w-56 h-56 rounded-full opacity-20 blur-xl"
-              style={{
-                background: `linear-gradient(135deg, ${colors.primary}10, transparent)`,
-              }}
-            ></div>
-
-            {/* Animated Network Nodes */}
-            <div className="absolute top-1/3 left-0 z-0">
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="absolute w-4 h-4 rounded-full animate-bounce"
-                  style={{
-                    background: `linear-gradient(135deg, ${colors.secondary}, ${colors.primary})`,
-                    left: `${i * 30}px`,
-                    top: `${i * 15}px`,
-                    animationDelay: `${i * 0.3}s`,
-                  }}
-                ></div>
-              ))}
-            </div>
-
-            <div className="absolute bottom-1/4 right-0 z-0">
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="absolute w-3 h-3 rounded-full animate-bounce"
-                  style={{
-                    background: `linear-gradient(135deg, ${colors.accent}, #0891b2)`,
-                    right: `${i * 25}px`,
-                    bottom: `${i * 10}px`,
-                    animationDelay: `${i * 0.4}s`,
-                  }}
-                ></div>
-              ))}
             </div>
           </div>
         </div>
-      </Container>
+      </div>
 
-      {/* Bottom Gradient Transition */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-24 z-0"
-        style={{
-          background: `linear-gradient(180deg, ${colors.light}, transparent)`,
-        }}
-      ></div>
+      {/* Add these styles for animations */}
+      <style>{`
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-15px);
+          }
+        }
+        @keyframes shimmer {
+          100% {
+            transform: translateX(200%);
+          }
+        }
+        .animate-float {
+          animation: float 4s ease-in-out infinite;
+        }
+        .animate-shimmer {
+          animation: shimmer 3s infinite;
+        }
+      `}</style>
     </section>
   );
 };

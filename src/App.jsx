@@ -1,21 +1,37 @@
+// App.js
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
-import Hero from "./Components/Hero";
-import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
-import About from "./Components/About";
-import Products from "./Components/Products";
+import AboutUs from "./Components/AboutUs"; // New component
+import Home from "./Components/Home";
+import ProductUs from "./Components/ProductUs";
+import Solutions from "./Components/Solutions";
+import ProductDetails from "./Components/ProductDetails";
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      <Hero />
-      <About/>
-      <Products />
-      <Contact />
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen bg-white">
+        <Navbar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Home />
+              </>
+            }
+          />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/productUs" element={<ProductUs />} />
+          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/products/:id" element={<ProductDetails />} />
+          {/* Add other routes as needed */}
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

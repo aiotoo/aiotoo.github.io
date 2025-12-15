@@ -1,8 +1,9 @@
-import React from "react";
+// Components/Container.js
+import React from 'react';
 
-const Container = ({ children, className = "" }) => {
+const Container = ({ children, className = '' }) => {
   return (
-    <div className={` mx-auto px-5 sm:px-9 lg:px-9 ${className}`}>
+    <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${className}`}>
       {children}
     </div>
   );

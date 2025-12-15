@@ -1,363 +1,332 @@
 import React from "react";
 import {
-  Cpu,
-  Cloud,
-  Server,
-  Zap,
-  Globe,
-  Lock,
-  Wifi,
   RadioTower,
-  Shield,
-  Building,
-  Battery,
-  MapPin,
-  Network,
-  Smartphone,
-  Database,
-  BarChart,
+  ArrowRight,
+  Sparkles,
+  Cpu,
+  Wifi,
+  Globe,
 } from "lucide-react";
-import Container from "./Container";
-import { colors } from "../constants/colors";
+import { colors, gradients } from "../constants/colors";
+import { Link } from "react-router-dom";
+import { backgroundIcons } from "../utils/backgroundIcons";
 
 const About = () => {
-
-  // IoT Use Cases
-  const useCases = [
-    {
-      name: "Energy Meter",
-      icon: <Zap className="text-blue-600" size={20} />,
-      color: "bg-blue-50 border-blue-100",
-    },
-    {
-      name: "Water Meter",
-      icon: <div className="text-cyan-600">💧</div>,
-      color: "bg-cyan-50 border-cyan-100",
-    },
-    {
-      name: "Battery Management",
-      icon: <Battery className="text-green-600" size={20} />,
-      color: "bg-green-50 border-green-100",
-    },
-    {
-      name: "Asset Tracker",
-      icon: <MapPin className="text-red-600" size={20} />,
-      color: "bg-red-50 border-red-100",
-    },
-  ];
-
-  // Technology Comparison
-  const legacyTech = [
-    { name: "WiFi", limitation: "Short range, high power" },
-    { name: "GSM", limitation: "High cost, power hungry" },
-    { name: "ZigBee", limitation: "Limited range" },
-  ];
-
-  const nextGenTech = [
-    {
-      name: "LoRaWAN",
-      features: ["Long range", "Low power", "Secure"],
-      icon: <RadioTower className="text-blue-600" size={18} />,
-    },
-    {
-      name: "NB-IoT",
-      features: ["Cellular based", "Good penetration"],
-      icon: <Network className="text-green-600" size={18} />,
-    },
-    {
-      name: "Sigfox",
-      features: ["Global network", "Simple devices"],
-      icon: <Globe className="text-purple-600" size={18} />,
-    },
-    {
-      name: "BLE 5 Mesh",
-      features: ["Mesh networking", "High data rate"],
-      icon: <Wifi className="text-orange-600" size={18} />,
-    },
-  ];
-
-  // LoRaWAN Benefits
-  const loraBenefits = [
-    {
-      icon: <Shield className="text-green-600" size={20} />,
-      title: "Secure Communication",
-      desc: "End-to-end encryption with mutual authentication",
-    },
-    {
-      icon: <Globe className="text-blue-600" size={20} />,
-      title: "Long Range",
-      desc: "Up to 15km in rural areas, 5km in urban areas",
-    },
-    {
-      icon: <Battery className="text-purple-600" size={20} />,
-      title: "Low Power",
-      desc: "Battery life up to 10 years",
-    },
-    {
-      icon: <Database className="text-orange-600" size={20} />,
-      title: "Scalability",
-      desc: "Thousands of devices per gateway",
-    },
-    {
-      icon: <Smartphone className="text-cyan-600" size={20} />,
-      title: "Bidirectional",
-      desc: "Full uplink and downlink communication",
-    },
-    {
-      icon: <BarChart className="text-red-600" size={20} />,
-      title: "Cost Effective",
-      desc: "Low infrastructure and maintenance costs",
-    },
-  ];
-
-  // Architecture Components
-  const architecture = [
-    { name: "Sensors/End Nodes", desc: "Capture data from assets", icon: "📡" },
-    { name: "Gateways", desc: "Bridge between sensors and cloud", icon: "📶" },
-    {
-      name: "Cloud Platform",
-      desc: "Store, analyze and manage data",
-      icon: "☁️",
-    },
-    {
-      name: "Applications",
-      desc: "Visualize data and create alerts",
-      icon: "📱",
-    },
-  ];
-
   return (
-    <section id="about" className="relative py-16 md:py-24 overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-linear-to-b from-white to-blue-50/30 z-0"></div>
-      <div className="absolute top-0 left-0 w-full h-96 bg-linear-to-b from-primary/5 to-transparent"></div>
+    <section
+      id="about"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      {/* Enhanced Background with Icons */}
+      <div className="absolute inset-0 z-0">
+        {/* Dark gradient background */}
+        <div className="absolute inset-0 bg-linear-to-br from-gray-50 via-white to-blue-50/30" />
 
-      {/* Network Pattern */}
-      <div className="absolute inset-0 opacity-5 z-0">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, ${colors.primary}20 1px, transparent 0)`,
-            backgroundSize: "50px 50px",
-          }}
-        ></div>
+        {/* Animated network lines */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern
+                id="grid"
+                width="80"
+                height="80"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 80 0 L 0 0 0 80"
+                  fill="none"
+                  stroke={colors.primary}
+                  strokeWidth="1"
+                />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+        </div>
+
+        {/* Floating background icons */}
+        {backgroundIcons.map((icon, index) => (
+          <div
+            key={index}
+            className={`absolute ${icon.position} opacity-5 animate-float`}
+            style={{ animationDelay: icon.delay }}
+          >
+            <icon.Icon
+              className={`${icon.size}`}
+              style={{ color: icon.color }}
+            />
+          </div>
+        ))}
+
+        {/* Animated connecting lines */}
+        <svg className="absolute inset-0 w-full h-full opacity-5">
+          {backgroundIcons.slice(0, 6).map((_, index) => (
+            <line
+              key={index}
+              x1={`${Math.random() * 100}%`}
+              y1={`${Math.random() * 100}%`}
+              x2={`${Math.random() * 100}%`}
+              y2={`${Math.random() * 100}%`}
+              stroke={colors.primary}
+              strokeWidth="0.5"
+              strokeDasharray="5,5"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="0"
+                to="20"
+                dur="3s"
+                repeatCount="indefinite"
+              />
+            </line>
+          ))}
+        </svg>
+
+        {/* Floating gradient orbs */}
+        <div className="absolute top-1/4 left-1/4 w-150 h-150 rounded-full">
+          <div
+            className="absolute inset-0 bg-linear-to-r from-blue-500/10 to-purple-500/10 rounded-full animate-pulse"
+            style={{ animationDuration: "8s" }}
+          />
+        </div>
+
+        <div className="absolute bottom-1/4 right-1/4 w-125 h-125 rounded-full">
+          <div
+            className="absolute inset-0 bg-linear-to-r from-cyan-500/10 to-blue-500/10 rounded-full animate-pulse"
+            style={{ animationDuration: "10s", animationDelay: "1s" }}
+          />
+        </div>
+
+        {/* Particle dots */}
+        <div className="absolute inset-0">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-px h-px rounded-full bg-primary/20"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animation: `pulse ${2 + Math.random() * 3}s infinite alternate`,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
-      <Container className="relative z-10">
-        {/* Header Section */}
-        <div className="text-center max-w-4xl mx-auto mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-blue-50 to-primary/10 rounded-full border border-primary/20 mb-6">
-            <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-            <span className="text-sm font-semibold text-primary">
-              About ClodPi Labs
-            </span>
+      {/* Main Content - Full Width */}
+      <div className="relative z-10 w-full max-w-450 mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          {/* Left Visual Column */}
+          <div className="relative">
+            {/* Floating Elements */}
+            <div className="absolute -top-16 -left-6 z-10">
+              <div className="relative bg-white/90 backdrop-blur-xl p-6 rounded-2xl border border-blue-100 shadow-2xl animate-float-slow">
+                <div className="flex items-center gap-3">
+                  <div className="p-3 rounded-xl bg-linear-to-br from-blue-500/10 to-blue-600/10">
+                    <RadioTower
+                      className="w-8 h-8"
+                      style={{ color: colors.primary }}
+                    />
+                  </div>
+                  <div>
+                    <div
+                      className="text-sm font-medium"
+                      style={{ color: colors.primary }}
+                    >
+                      NETWORK
+                    </div>
+                    <div
+                      className="text-2xl font-bold"
+                      style={{ color: colors.dark }}
+                    >
+                      50+ Cities
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Additional floating card */}
+            <div className="absolute -bottom-16 -right-6 z-10">
+              <div
+                className="relative bg-white/90 backdrop-blur-xl p-6 rounded-2xl border border-green-100 shadow-2xl animate-float-slow"
+                style={{ animationDelay: "1s" }}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-3 rounded-xl bg-linear-to-br from-green-500/10 to-green-600/10">
+                    <Cpu className="w-8 h-8" style={{ color: "#10B981" }} />
+                  </div>
+                  <div>
+                    <div
+                      className="text-sm font-medium"
+                      style={{ color: "#10B981" }}
+                    >
+                      DEVICES
+                    </div>
+                    <div
+                      className="text-2xl font-bold"
+                      style={{ color: colors.dark }}
+                    >
+                      1000+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Main Visual Card */}
+            <div className="relative bg-linear-to-br from-white/95 to-white/90 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl overflow-hidden group">
+              <div className="relative p-12">
+                {/* Icon Header */}
+                <div className="flex items-center justify-between mb-10">
+                  <div className="flex items-center gap-4">
+                    <div className="p-4 rounded-2xl bg-linear-to-br from-blue-500 to-blue-600 shadow-lg">
+                      <Sparkles className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <div
+                        className="text-sm font-semibold tracking-wider"
+                        style={{ color: colors.primary }}
+                      >
+                        EST. 2020
+                      </div>
+                      <div
+                        className="text-2xl font-bold"
+                        style={{ color: colors.dark }}
+                      >
+                        Startup Vision
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-linear-to-r from-green-500/10 to-green-600/10 border border-green-500/30">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    <span
+                      className="text-sm font-medium"
+                      style={{ color: "#10B981" }}
+                    >
+                      GROWING
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="space-y-8">
+                  <h3
+                    className="text-3xl md:text-4xl font-bold"
+                    style={{ color: colors.dark }}
+                  >
+                    Building India's{" "}
+                    <span
+                      className="bg-clip-text text-transparent"
+                      style={{ backgroundImage: gradients.primary }}
+                    >
+                      IoT Infrastructure
+                    </span>
+                  </h3>
+
+                  <p
+                    className="text-lg leading-relaxed"
+                    style={{ color: colors.dark }}
+                  >
+                    We're expanding LoRa® network coverage across India with
+                    indigenously designed hardware and custom software
+                    solutions.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-6 leading-tight">
-            Enabling IoT Success with{" "}
-            <span className="text-primary relative">
-              Long-Distance Connectivity
-              <span className="absolute -bottom-2 left-0 right-0 h-1 bg-linear-to-r from-primary to-blue-300 rounded-full"></span>
-            </span>
-          </h1>
-
-          <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
-            We are a startup with the objective to enable IoT businesses and
-            products to succeed with relevant long-distance IoT connectivity
-            technology, expanding across India with indigenous solutions.
-          </p>
-        </div>
-
-        {/* Mission & Technology */}
-        <div className="grid lg:grid-cols-2 gap-10 mb-20">
-          {/* Mission Card */}
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-lg bg-linear-to-br from-primary to-blue-600 flex items-center justify-center">
-                <Globe className="text-white" size={24} />
+          {/* Right Content Column */}
+          <div className="space-y-8">
+            {/* Header */}
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-linear-to-r from-blue-500/10 to-blue-600/10 border border-blue-500/30">
+                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                <span
+                  className="text-sm font-semibold tracking-wide"
+                  style={{ color: colors.primary }}
+                >
+                  ABOUT CLODPI LABS
+                </span>
               </div>
-              <div>
-                <h3 className="text-2xl font-bold text-dark">Our Mission</h3>
-                <p className="text-gray-500 text-sm">
-                  Transforming India's IoT Landscape
+
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                <span className="relative">
+                  <span
+                    className="relative z-10 bg-clip-text text-transparent"
+                    style={{ backgroundImage: gradients.primary }}
+                  >
+                    Enabling IoT
+                  </span>
+                  <div className="absolute -bottom-3 left-0 right-0 h-1.5 bg-linear-to-r from-blue-500/50 via-blue-500 to-blue-500/50 rounded-full" />
+                </span>
+                <br />
+                <span
+                  className="text-4xl md:text-5xl lg:text-6xl"
+                  style={{ color: colors.dark }}
+                >
+                  Success in India
+                </span>
+              </h2>
+            </div>
+
+            {/* Description */}
+            <div className="space-y-8">
+              <div className="relative p-8 rounded-2xl bg-linear-to-br from-white/95 to-white/90 backdrop-blur-xl border border-white/20 shadow-xl group">
+                {/* Background pattern */}
+                <div className="absolute inset-0 opacity-5">
+                  {[RadioTower, Wifi, Globe].map((Icon, i) => (
+                    <Icon
+                      key={i}
+                      className="absolute w-16 h-16"
+                      style={{
+                        color: colors.primary,
+                        left: `${20 + i * 30}%`,
+                        top: `${10 + i * 20}%`,
+                        transform: `rotate(${i * 15}deg)`,
+                      }}
+                    />
+                  ))}
+                </div>
+
+                <p
+                  className="relative text-xl leading-relaxed z-10"
+                  style={{ color: colors.dark }}
+                >
+                  We are a startup with the objective to enable IoT businesses
+                  and products to succeed with relevant long-distance IoT
+                  connectivity technology.
                 </p>
               </div>
-            </div>
 
-            <div className="space-y-6">
-              <p className="text-gray-600 leading-relaxed">
-                ClodPi Labs has vast proven experience in LoRaWAN network setup
-                and LoRa product design. We specialize in RF-based LPWAN systems
-                for smart devices that can be operated remotely in alignment
-                with smart city objectives.
-              </p>
+              {/* CTA */}
+              <div className="pt-6">
+                <Link
+                  to="/about-us"
+                  className="group relative inline-flex items-center justify-center w-full sm:w-auto px-10 py-5 text-lg font-semibold rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden"
+                  style={{
+                    background: gradients.primary,
+                    color: "white",
+                  }}
+                >
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="flex items-start gap-3 p-4 bg-blue-50/50 rounded-xl">
-                  <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center shrink-0">
-                    <Building className="text-blue-600" size={20} />
+                  <div className="relative flex items-center justify-center gap-4">
+                    <span className="text-lg">Explore Our Full Story</span>
+                    <ArrowRight className="w-6 h-6 transform group-hover:translate-x-2 transition-transform duration-300" />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-dark mb-1">
-                      Smart Infrastructure
-                    </h4>
-                    <p className="text-sm text-gray-600">
-                      For cities, factories, farms & universities
-                    </p>
-                  </div>
-                </div>
 
-                <div className="flex items-start gap-3 p-4 bg-green-50/50 rounded-xl">
-                  <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center shrink-0">
-                    <Lock className="text-green-600" size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-dark mb-1">
-                      Secure Deployment
-                    </h4>
-                    <p className="text-sm text-gray-600">
-                      Public or private network options
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Technology Comparison */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-dark mb-6 flex items-center gap-3">
-                <RadioTower className="text-primary" size={24} />
-                IoT Technology Stack
-              </h3>
-
-              {/* Legacy Technologies */}
-              <div className="mb-8">
-                <h4 className="text-lg font-semibold text-gray-700 mb-4">
-                  Traditional Solutions
-                </h4>
-                <div className="grid grid-cols-3 gap-3">
-                  {legacyTech.map((tech, index) => (
-                    <div
-                      key={index}
-                      className="text-center p-4 bg-gray-50 rounded-xl"
-                    >
-                      <div className="font-medium text-gray-800 mb-1">
-                        {tech.name}
-                      </div>
-                      <div className="text-xs text-gray-500">
-                        {tech.limitation}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Next Gen Technologies */}
-              <div>
-                <h4 className="text-lg font-semibold text-gray-700 mb-4">
-                  Next-Generation IoT Technologies
-                </h4>
-                <div className="grid grid-cols-2 gap-4">
-                  {nextGenTech.map((tech, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start gap-3 p-4 bg-white rounded-xl shadow-sm border border-gray-100"
-                    >
-                      <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center shrink-0">
-                        {tech.icon}
-                      </div>
-                      <div>
-                        <div className="font-semibold text-dark mb-2">
-                          {tech.name}
-                        </div>
-                        <div className="space-y-1">
-                          {tech.features.map((feature, i) => (
-                            <div
-                              key={i}
-                              className="text-xs text-gray-600 flex items-center"
-                            >
-                              <div className="w-1.5 h-1.5 bg-primary/50 rounded-full mr-2"></div>
-                              {feature}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 bg-blue-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                </Link>
               </div>
             </div>
           </div>
         </div>
-
-        {/* LoRaWAN Benefits */}
-        <div className="mb-20">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold text-dark mb-4">
-              Why <span className="text-primary">LoRaWAN®</span> for IoT?
-            </h3>
-            <p className="text-gray-600">
-              LoRaWAN - a Low Power Wide Area Network (LPWAN) with
-              specifications that achieve key IoT objectives
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {loraBenefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-gray-50 flex items-center justify-center shrink-0">
-                    {benefit.icon}
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-dark mb-2">
-                      {benefit.title}
-                    </h4>
-                    <p className="text-sm text-gray-600">{benefit.desc}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Use Cases Section */}
-        <div className="mb-20">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold text-dark mb-4">
-              Smart Device Implementation
-            </h3>
-            <p className="text-gray-600">
-              Our expertise includes development of smart devices/utilities for
-              remote operation in accordance with smart city objectives
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-            {useCases.map((useCase, index) => (
-              <div
-                key={index}
-                className={`${useCase.color} p-4 rounded-xl text-center border hover:shadow-md transition-all duration-300 group hover:-translate-y-1`}
-              >
-                <div className="text-2xl mb-3 flex justify-center">
-                  {useCase.icon}
-                </div>
-                <div className="font-medium text-dark text-sm md:text-base">
-                  {useCase.name}
-                </div>
-                <div className="text-xs text-gray-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  IoT Use Case
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Container>
+      </div>
     </section>
   );
 };

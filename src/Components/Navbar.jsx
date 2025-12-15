@@ -1,23 +1,45 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home, Info, Package, Cpu, Mail } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ClodPiLogo from "../assets/ClodPi_Logo.png";
-import { colors } from "../constants/colors";
+import { colors, gradients } from "../constants/colors";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  // Updated nav items without dropdowns
+  // Simple nav items
   const navItems = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#about" },
-    { name: "Products", href: "#products" },
-    { name: "Solutions", href: "#solutions" },
-    { name: "Support", href: "#support" },
-    { name: "Contact", href: "#contact" },
+    {
+      name: "Home",
+      href: "/",
+      icon: Home,
+    },
+    {
+      name: "About",
+      href: "/about-us",
+      icon: Info,
+    },
+    {
+      name: "Products",
+      href: "/productUs",
+      icon: Package,
+    },
+    {
+      name: "Solutions",
+      href: "/solutions",
+      icon: Cpu,
+    },
+    {
+      name: "Contact",
+      href: "#contact",
+      icon: Mail,
+    },
   ];
 
-  // Handle scroll effect
+  // Handle scroll
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -26,158 +48,231 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Get active section
+  const getActiveSection = () => {
+    if (location.pathname !== "/") return "";
+
+    const sections = ["about", "products", "solutions", "contact"];
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          return section;
+        }
+      }
+    }
+    return "home";
+  };
+
+  const activeSection = getActiveSection();
+
+  // Handle hash click
+  // Always navigate to home and scroll to section for hash links
+  const handleHashClick = (href) => {
+    if (href.startsWith("#")) {
+      if (location.pathname !== "/") {
+        navigate(`/${href}`);
+        setTimeout(() => {
+          const id = href.substring(1);
+          const element = document.getElementById(id);
+          if (element) {
+            const offset = 100;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - offset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          }
+        }, 100);
+      } else {
+        const id = href.substring(1);
+        const element = document.getElementById(id);
+        if (element) {
+          const offset = 100;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
+      }
+    }
+    setIsOpen(false);
+  };
+
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "shadow-2xl" : "shadow-sm"
-      }`}
-      style={{
-        background: scrolled
-          ? `linear-gradient(135deg, ${colors.glass.white}, rgba(255, 255, 255, 0.88))`
-          : `linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95))`,
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        borderBottom: scrolled
-          ? "1px solid rgba(255, 255, 255, 0.3)"
-          : "1px solid rgba(255, 255, 255, 0.2)",
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 md:h-20">
-          {/* Logo Section */}
-          <div className="flex items-center space-x-3 group cursor-pointer">
-            <img
-              src={ClodPiLogo}
-              alt="ClodPi Labs Logo"
-              className="w-40 h-40 object-contain"
-            />
-          </div>
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+          scrolled
+            ? "py-3 bg-white/95 backdrop-blur-md border-b border-gray-200"
+            : "py-5 bg-white/90 backdrop-blur-sm"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-3">
+              <img src={ClodPiLogo} alt="ClodPi Labs" className="h-10 w-auto" />
+            </Link>
 
-          {/* Desktop Navigation - Clean & Simple */}
-          <div className="hidden lg:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="relative px-5 py-2.5 rounded-xl font-medium transition-all duration-300 hover:scale-105 group"
-                style={{
-                  color: colors.dark,
-                }}
-              >
-                <span>{item.name}</span>
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-1">
+              {navItems.map((item) => {
+                const isActive =
+                  (item.href === "/" && activeSection === "home") ||
+                  (item.href.startsWith("#") &&
+                    activeSection === item.href.substring(1)) ||
+                  item.href === location.pathname;
 
-                {/* Animated underline */}
-                <span
-                  className="absolute bottom-1.5 left-1/2 transform -translate-x-1/2 h-0.5 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 w-0 group-hover:w-4/5"
-                  style={{
-                    background: `linear-gradient(90deg, transparent, ${colors.secondary}, transparent)`,
-                    boxShadow: `0 0 8px ${colors.secondary}`,
-                  }}
-                ></span>
-              </a>
-            ))}
-          </div>
+                return (
+                  <div key={item.name} className="relative">
+                    {item.href.startsWith("#") ? (
+                      <button
+                        onClick={() => handleHashClick(item.href)}
+                        className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors duration-200 ${
+                          isActive
+                            ? "text-white"
+                            : "text-gray-700 hover:text-gray-900"
+                        }`}
+                      >
+                        <item.icon size={18} />
+                        <span>{item.name}</span>
+                      </button>
+                    ) : (
+                      <Link
+                        to={item.href}
+                        className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors duration-200 ${
+                          isActive
+                            ? "text-white"
+                            : "text-gray-700 hover:text-gray-900"
+                        }`}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <item.icon size={18} />
+                        <span>{item.name}</span>
+                      </Link>
+                    )}
 
-          {/* Mobile Menu Button - Modern Design */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden relative p-2.5 rounded-xl transition-all duration-300 hover:scale-110 active:scale-95"
-            style={{
-              backgroundColor: isOpen ? colors.primary : "transparent",
-              color: isOpen ? "white" : colors.primary,
-            }}
-          >
-            <div className="relative">
+                    {/* Active background */}
+                    {isActive && (
+                      <div
+                        className="absolute inset-0 rounded-lg -z-10"
+                        style={{ background: gradients.primary }}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100"
+            >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
-              {!isOpen && (
-                <span
-                  className="absolute -top-1 -right-1 w-2 h-2 rounded-full animate-ping"
-                  style={{ backgroundColor: colors.accent }}
-                ></span>
-              )}
-            </div>
-          </button>
+            </button>
+          </div>
         </div>
+      </nav>
 
-        {/* Mobile Navigation - Glass Effect Panel */}
-        {isOpen && (
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="fixed inset-0 z-40 lg:hidden">
+          {/* Backdrop */}
           <div
-            className="lg:hidden mb-4 rounded-2xl overflow-hidden animate-slideDown"
-            style={{
-              background: "rgba(255, 255, 255, 0.95)",
-              backdropFilter: "blur(25px)",
-              border: "1px solid rgba(255, 255, 255, 0.4)",
-              boxShadow: `
-                0 20px 60px rgba(13, 27, 57, 0.15),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.8)
-              `,
-            }}
-          >
-            <div className="p-2">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="block py-3.5 px-4 rounded-xl font-medium transition-all duration-300 active:scale-[0.98] group"
-                  style={{ color: colors.primary }}
+            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            onClick={() => setIsOpen(false)}
+          />
+
+          {/* Menu Panel */}
+          <div className="absolute right-0 top-0 h-full w-80 bg-white shadow-xl">
+            <div className="p-6">
+              {/* Close button */}
+              <div className="flex justify-end mb-8">
+                <button
                   onClick={() => setIsOpen(false)}
-                  onTouchStart={(e) => {
-                    e.currentTarget.style.backgroundColor = `${colors.primary}10`;
-                  }}
-                  onTouchEnd={(e) => {
-                    setTimeout(() => {
-                      e.currentTarget.style.backgroundColor = "transparent";
-                    }, 300);
-                  }}
+                  className="p-2 rounded-lg hover:bg-gray-100"
                 >
-                  <div className="flex items-center space-x-3">
-                    {/* Optional: Add icons for mobile menu items */}
-                    <div
-                      className="w-1.5 h-1.5 rounded-full opacity-70 transition-all duration-300 group-hover:scale-125"
-                      style={{ backgroundColor: colors.accent }}
-                    ></div>
-                    <span>{item.name}</span>
-                  </div>
+                  <X size={24} />
+                </button>
+              </div>
 
-                  {/* Mobile menu item indicator */}
-                  <div className="ml-7 mt-1 text-xs opacity-40 transition-all duration-300 group-hover:opacity-70">
-                    Tap to navigate →
-                  </div>
-                </a>
-              ))}
-            </div>
-
-            {/* Decorative footer for mobile menu */}
-            <div className="px-4 py-3 border-t border-white/50">
-              <div
-                className="text-center text-xs font-medium tracking-wider uppercase opacity-50"
-                style={{ color: colors.primary }}
+              {/* Logo */}
+              <Link
+                to="/"
+                className="flex items-center gap-3 mb-10"
+                onClick={() => setIsOpen(false)}
               >
-                ClodPi Labs © {new Date().getFullYear()}
+                <img
+                  src={ClodPiLogo}
+                  alt="ClodPi Labs"
+                  className="h-12 w-auto"
+                />
+              </Link>
+
+              {/* Navigation Links */}
+              <div className="space-y-2">
+                {navItems.map((item) => {
+                  const isActive =
+                    (item.href === "/" && activeSection === "home") ||
+                    (item.href.startsWith("#") &&
+                      activeSection === item.href.substring(1)) ||
+                    item.href === location.pathname;
+
+                  return (
+                    <div key={item.name}>
+                      {item.href.startsWith("#") ? (
+                        <button
+                          onClick={() => handleHashClick(item.href)}
+                          className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors duration-200 w-full text-left ${
+                            isActive
+                              ? "text-white"
+                              : "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                          }`}
+                        >
+                          <item.icon size={20} />
+                          <span>{item.name}</span>
+                        </button>
+                      ) : (
+                        <Link
+                          to={item.href}
+                          className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors duration-200 ${
+                            isActive
+                              ? "text-white"
+                              : "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                          }`}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <item.icon size={20} />
+                          <span>{item.name}</span>
+                        </Link>
+                      )}
+
+                      {/* Active background */}
+                      {isActive && (
+                        <div
+                          className="absolute inset-0 rounded-lg -z-10"
+                          style={{ background: gradients.primary }}
+                        />
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
-      {/* Animation styles */}
-      <style jsx>{`
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-slideDown {
-          animation: slideDown 0.3s ease-out;
-        }
-      `}</style>
-    </nav>
+      {/* Spacer */}
+      <div className={`h-20 ${scrolled ? "h-16" : "h-20"}`} />
+    </>
   );
 };
 
